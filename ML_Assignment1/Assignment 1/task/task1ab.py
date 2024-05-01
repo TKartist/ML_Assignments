@@ -18,13 +18,12 @@ def equation(x):
 
 
 model = LinearRegression()
-model.fit(
-    equation(x),
-    y=y,
-)
+model.fit(equation(x), y=y)
 
 theta_z = np.array([model.intercept_])
 theta = np.concatenate((theta_z, model.coef_), axis=0)
+
+print(theta)
 
 
 def model_function(theta, x):
