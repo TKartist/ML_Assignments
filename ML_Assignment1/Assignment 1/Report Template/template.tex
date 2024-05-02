@@ -199,10 +199,10 @@ Comment and compare how the (a.) training error, (b.) test error and (c.) coeffi
 \item[A3.1] Both logistic-regression and the perceptron are linear models specializing in binary classifications. However, logistic-regression uses optimization method such as gradient descent method with loss function to optimize the probabilistic objective function and outputs probability estimation of the object being 0 or 1. While, perceptron tries to find a linear decision boundary by updating the boundary according to misclassified examples (convert it to correct classification). Due to its approach, logistic-regression typically reaches convergence if there isn't any inordinary problem, but it is much more common for perceptron to not reach a convergence because there are cases where the data is not linearly separable. \\
 
 \item[Q3.2] Discuss the major limit they share and how neural networks can solve it.
-\item[A3.2] As specified in the first part of the answer, both logistic regression and perceptron are linear models and both of them struggle with learning non-linear patterns existing between input features and target variable. On the otherhand, neural networks can handle non-linear relation between input features and target variable using non-linear activation functions such as sigmoid function at the multiple hidden layer levels.\\
+\item[A3.2] As specified in the first part of the answer, both logistic regression and perceptron are linear models and both of them struggle with learning non-linear patterns existing between input features and target variable. On the otherhand, neural networks can handle non-linear relation between input features and target variable using non-linear activation functions such as sigmoid function at the multiple hidden layer levels. For clarification, an activation function is a function of a node in the neural network that calculates the output of the node from the given input and their weight.\\
 
 \item[Q3.3] What is the role of activation functions in feedforward neural networks.
-\item[A3.3] ~\\
+\item[A3.3] As explained in the previous question, an activation function is like the microprocessor of neural network. There are numerous tasks which require capturing of non-linear relationship between the input and target variable such as image recognition and natural language processing. Activation function embedded in nodes is the one responsible for enabling feedforward neural networks to model complex relation between input features and target variable. It ensures its differentiability so the gradients can be calculated during the training process and be used to update the network parameters through optimization algorithms. In deep neural networks there are scenarios where the gradient of the loss function becomes extremely small with respect to the parameters of neural networks. It is quite common case in deep neural networks with many layers, so it becomes very challenging to train complex models effectively. Hence, activation functions such as ReLU" prevent saturation of activation units (nodes) to improve the stability of convergence of the training process.\\
 \end{itemize}
 \subsection*{Q4. Consider the regression problem shown in the picture below and answer each point.}
 
@@ -214,11 +214,11 @@ Comment and compare how the (a.) training error, (b.) test error and (c.) coeffi
 \begin{itemize}
 \item[Q4.1] Do you think a model of the family f(x, theta) = $\theta_0 + \theta_1 * x_1 + \theta_2 * x_2$ is a good choice for such task? Why?
 
-\item [A4.1]
+\item [A4.1] First of all, assuming $x_1$, and $x_2$ are linearly independent, the given model is a linear model, whereas we can clearly identify inversed bell-curve on 3D plane, which indicates non-linear relationship between input features and target variable in the picture. As we have numerously iterated in previous questions, a linear model is not sufficient in capturing the non-linear relationship between the input features and the target variable. Hence, it would be much better to use a model capable of capturing non-linear relation such as neural networks or polynomial regression. \\
 
 \item[Q4.2] Do you think using a feed-forward neural network would improve the results?
 
-\item[A4.2]
+\item[A4.2] Yes, FFNNs have non-linear activation functions such as sigmoid, ReLU, and more, which in multiple layers would definitely perform better at capturing the non-linear relationship displayed in the picture.
 
 \end{itemize}
 
