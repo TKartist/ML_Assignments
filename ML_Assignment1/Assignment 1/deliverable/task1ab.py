@@ -1,13 +1,19 @@
 import numpy as np
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
+from sklearn.model_selection import train_test_split
+import pickle
 
 
 data = np.load("../Data/data.npz")
 
 
-x = data["x"]
+X = data["x"]
 y = data["y"]
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
 
 
 def equation(x):
@@ -18,25 +24,16 @@ def equation(x):
 
 
 model = LinearRegression()
-model.fit(equation(x), y=y)
+model.fit(equation(X_train), y=y_train)
+
+with open("LinearRegression.pkl", "wb") as f:
+    pickle.dump(model, f)
+f.close()
 
 theta_z = np.array([model.intercept_])
 theta = np.concatenate((theta_z, model.coef_), axis=0)
 
 print(theta)
 
-
-def model_function(theta, x):
-    t0, t1, t2, t3, t4, t5 = theta
-    return (
-        t0
-        + t1 * x[:, 0]
-        + t2 * x[:, 1]
-        + t3 * np.cos(x[:, 0])
-        + t4 * x[:, 1] ** 2
-        + t5 * np.tanh(x[:, 0])
-    )
-
-
-y_pred = model_function(theta, x)
-print(mean_squared_error(y_true=y, y_pred=y_pred))
+y_pred = model.predict(X=equation(X_test))
+print(mean_squared_error(y_true=y_test, y_pred=y_pred))

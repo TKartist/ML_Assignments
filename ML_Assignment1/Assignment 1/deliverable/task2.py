@@ -27,4 +27,4 @@ mlp_regressor.fit(X_train, y_train)
 y_pred = mlp_regressor.predict(X_test)
 
 mse = mean_squared_error(y_pred=y_pred, y_true=y_test)
-print(mse)
+print("MSE of MLP Regressor: ", mse)

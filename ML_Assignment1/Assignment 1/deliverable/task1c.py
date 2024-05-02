@@ -2,6 +2,7 @@ from sklearn.linear_model import Lasso
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
+import pickle
 
 data = np.load("../Data/data.npz")
 
@@ -21,13 +22,16 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 
-lasso = Lasso(alpha=0.001)
-lasso.fit(X=equation(X_train), y=y_train)
+model = Lasso(alpha=0.001)
+model.fit(X=equation(X_train), y=y_train)
 
+with open("LassoRegression.pkl", "wb") as f:
+    pickle.dump(model, f)
+f.close()
 
-y_pred = lasso.predict(equation(X_test))
+y_pred = model.predict(equation(X_test))
 
-print(lasso.coef_)
+print(model.coef_)
 print(mean_squared_error(y_true=y_test, y_pred=y_pred))
 
 
